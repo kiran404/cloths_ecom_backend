@@ -96,8 +96,9 @@ exports.update = (req, res) => {
 
         // Check for all fields
         const { name, description, price, category, quantity, shipping } = fields    // grab the fields
+        console.log(fields);
 
-        if (!name || !description || !price || !category || !quantity || !shipping) {
+        if (!name || !description || !price || !category || !quantity || !shipping, !files.photo) {
             return res.status(400).json({
                 error: 'Please fill all fields'
             })

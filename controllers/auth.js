@@ -34,7 +34,7 @@ exports.signin = (req, res) => {
         // create authenticate method in user model
         if (!user.authenticate(password)) {
             return res.status(401).json({
-                error: "Email and password dont match"
+                err: "Email and password dont match"
             })
         }
 
@@ -62,6 +62,9 @@ exports.requireSignin = expressJwt({
 
 exports.isAuth = (req, res, next) => {
     console.log('Auth >>', req);
+    console.log('ReqProfile >> ', req.profile);
+    console.log('Req.auth >> ', req.auth);
+    console.log('Req.profile.id >> ', req.profile.id);
     let user = req.profile && req.auth && req.profile._id == req.auth._id;
 
     if (!user) {
