@@ -7,7 +7,12 @@ const CartItemSchema = new mongoose.Schema(
     product: { type: ObjectId, ref: "Product" },
     name: String,
     price: Number,
-    count: Number
+    count: Number,
+    size: {
+      enum: ["S", "M", "L", "XL", "XXL"],
+      default: "M",
+      type: String
+    }
   },
   { timestamps: true }
 );
@@ -16,6 +21,7 @@ const CartItem = mongoose.model("CartItem", CartItemSchema);
 
 const OrderSchema = new mongoose.Schema(
   {
+
     products: [CartItemSchema],
     transaction_id: {},
     amount: { type: Number },
